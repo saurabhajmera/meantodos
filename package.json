@@ -1,0 +1,19 @@
+{
+  "name": "meantodos",
+  "version": "1.0.0",
+  "description": "Simple web application using MongoDB,Express.js,Angular and Node",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saurabhajmera/meantodos.git"
+  },
+  "author": "Saurabh Ajmera",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saurabhajmera/meantodos/issues"
+  },
+  "homepage": "https://github.com/saurabhajmera/meantodos#readme"
+}
