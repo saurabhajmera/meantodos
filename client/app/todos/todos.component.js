@@ -70,6 +70,20 @@ var TodosComponent = (function () {
             });
         }
     };
+    TodosComponent.prototype.deleteTodo = function (todo) {
+        var _this = this;
+        var todos = this.todos;
+        this._todoService.deleteTodo(todo._id)
+            .subscribe(function (data) {
+            if (data.n == 1) {
+                for (var i = 0; i < todos.length; i++) {
+                    if (todos[i]._id === todo._id) {
+                        _this.todos.splice(i, 1);
+                    }
+                }
+            }
+        });
+    };
     TodosComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

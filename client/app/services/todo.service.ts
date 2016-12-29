@@ -34,4 +34,10 @@ export class TodoService{
     return result;
 
   }
+
+  deleteTodo(_id: number) {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this._http.delete('/api/v1/todo/'+_id,options).map(res=>res.json());
+  }
 }

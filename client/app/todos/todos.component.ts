@@ -13,7 +13,7 @@ import 'rxjs/add/operator/map';
   providers:[TodoService],
 })
 export class TodosComponent  {
-  todos: Todo[];
+  todos: any[];
   todoText:string;
   constructor(private _todoService:TodoService){
     // this.todoText="Add Todo..";
@@ -76,6 +76,23 @@ export class TodosComponent  {
 
         });
     }
+  }
+
+  deleteTodo(todo:any){
+    var todos = this.todos;
+    this._todoService.deleteTodo(todo._id)
+      .subscribe((data)=>{
+        if(data.n==1){
+          for(var i=0;i < todos.length;i++){
+            if(todos[i]._id === todo._id){
+              this.todos.splice(i,1);
+            }
+
+          }
+
+        }
+      })
+
   }
 
 
