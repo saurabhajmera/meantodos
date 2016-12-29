@@ -14,6 +14,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var todo_service_1 = require("../services/todo.service");
 var Todo_1 = require("../Todo");
+require('rxjs/add/operator/map');
 var TodosComponent = (function () {
     function TodosComponent(_todoService) {
         // this.todoText="Add Todo..";
@@ -39,6 +40,35 @@ var TodosComponent = (function () {
             _this.todos.push(todo);
             _this.todoText = "";
         });
+    };
+    TodosComponent.prototype.updateStatus = function (todo) {
+        var _todo = {
+            _id: todo._id,
+            text: todo.text,
+            isCompleted: !todo.isCompleted
+        };
+        this._todoService.updateTodo(_todo)
+            .subscribe(function () {
+            todo.isCompleted = !todo.isCompleted;
+        });
+    };
+    TodosComponent.prototype.setEditState = function (todo) {
+        todo.isEditMode = !todo.isEditMode;
+    };
+    TodosComponent.prototype.updateTodoText = function (event, todo) {
+        if (event.which === 13) {
+            todo.text = event.target.value;
+            var _todo = {
+                _id: todo._id,
+                text: todo.text,
+                isCompleted: todo.isCompleted
+            };
+            this._todoService.updateTodo(_todo)
+                .subscribe(function () {
+                todo.text = _todo.text;
+                todo.isEditMode = false;
+            });
+        }
     };
     TodosComponent = __decorate([
         core_1.Component({

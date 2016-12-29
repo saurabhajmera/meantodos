@@ -25,4 +25,13 @@ export class TodoService{
     console.log(result);
     return result;
   }
+
+  updateTodo(todo: any) {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    var result =  this._http.put('/api/v1/todo/'+todo._id,JSON.stringify(todo),options).map(res=>res.json());
+    console.log(result);
+    return result;
+
+  }
 }

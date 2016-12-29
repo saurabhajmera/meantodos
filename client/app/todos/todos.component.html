@@ -12,14 +12,16 @@
     <div *ngFor='let todo of todos'>
       <div class="row">
         <div class="col-md-1">
-          <input type="checkbox">
+          <input type="checkbox" [checked]="todo.isCompleted" (click)="updateStatus(todo)">
         </div>
         <div class="col-md-7">
-          {{todo.text}}
+          <span [class.hidden]="todo.isEditMode">{{todo.text}}</span>
+          <input type="text" [class.hidden]="!todo.isEditMode" (keypress)="updateTodoText($event,todo)" [value]="todo.text">
+          <input type="button" [class.hidden]="!todo.isEditMode" (click)="setEditState(todo)" value="Cancel">
         </div>
         <div class="col-md-4">
           <input type="button" class="btn btn-danger pull-right" value="Delete">
-          <input type="button" class="btn btn-default pull-right" value="Edit">
+          <input [class.disabled]="todo.isCompleted" (click)="setEditState(todo)" type="button" class="btn btn-default pull-right" value="Edit">
         </div>
       </div>
     </div>

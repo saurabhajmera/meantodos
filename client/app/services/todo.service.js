@@ -28,6 +28,13 @@ var TodoService = (function () {
         console.log(result);
         return result;
     };
+    TodoService.prototype.updateTodo = function (todo) {
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        var result = this._http.put('/api/v1/todo/' + todo._id, JSON.stringify(todo), options).map(function (res) { return res.json(); });
+        console.log(result);
+        return result;
+    };
     TodoService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])
